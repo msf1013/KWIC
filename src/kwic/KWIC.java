@@ -35,10 +35,10 @@ public class KWIC {
         List<List<String>> arlLines;
         List<String> arlProcessedLines;
         
-        // Pipe 1: Input 
+        // Filter 1: Input 
         arlLines = ir.read(strFileName, strSeparator);
         
-        // Pipe 2: Process lines
+        // Filter 2: Process lines
         arlProcessedLines = lp.processLines(arlLines, strSeparator);
         
         for(String line : arlProcessedLines) {

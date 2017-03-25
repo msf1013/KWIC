@@ -27,23 +27,33 @@ public class KWICInputReader extends InputReader {
         // Leer archivo
         File filFile;     
         BufferedReader breReader;
-        String strLinea;
+        String strLine;
         
         // Inicializar archivos
         filFile = new File(strFileName);
         breReader = new BufferedReader(new FileReader(filFile));
 
         // Lectura de archivo linea por linea          
-        strLinea = breReader.readLine();
+        strLine = breReader.readLine();
         
         String [] arrTokens;
         
-        while (strLinea != null) {
-            arrTokens = strLinea.split(strSeparator);
+        while (strLine != null) {
+            strLine = formatLine(strLine);
+                        
+            arrTokens = strLine.split(strSeparator);
             arrLines.add(new ArrayList<String>(Arrays.asList(arrTokens)));
-            strLinea = breReader.readLine();
+            strLine = breReader.readLine();
         }
         
         return arrLines;
+    }
+    
+    private String formatLine(String strLine) {
+        strLine = strLine.replaceAll("\\.", "");
+        strLine = strLine.replaceAll(",", "");
+        strLine = strLine.toLowerCase();
+        
+        return strLine;
     }
 }
